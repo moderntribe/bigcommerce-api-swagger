@@ -1,0 +1,16 @@
+{
+    "name": "moderntribe/bigcommerce-api-swagger",
+    "description": "Swagger documentation for the BigCommerce APIs",
+    "keywords": [
+        "swagger",
+        "api"
+    ],
+    "homepage": "https://developer.bigcommerce.com/",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Bigcommerce",
+            "homepage": "https://developer.bigcommerce.com/"
+        }
+    ]
+}
