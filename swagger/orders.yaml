@@ -761,6 +761,22 @@ definitions:
             type: number
             description: The number of shipping addresses associated with this transaction.
               A read-only value. Do not pass in a POST or PUT.
+          is_email_opt_in:
+            description: Indicates whether the shopper has selected an opt-in check box
+              (on the checkout page) to receive emails. A read-only value. Do not pass
+              in a POST or PUT.
+            example: false
+            type: boolean
+          total_ex_tax:
+            description: Override value for the total, excluding tax. If specified, the
+              field `total_inc_tax` is also required. (Float, Float-As-String, Integer)
+            example: '225.0000'
+            type: string
+          total_inc_tax:
+            description: 'Override value for the total, including tax. If specified, the
+              field `total_ex_tax` is also required. (Float, Float-As-String, Integer) '
+            example: '225.0000'
+            type: string
           order_source:
             description: Orders submitted via the store's website will include a `www`
               value. Orders submitted via the API will be set to `external`. A read-only
@@ -1795,16 +1811,6 @@ definitions:
           Integer)
         example: '0.0000'
         type: string
-      total_ex_tax:
-        description: Override value for the total, excluding tax. If specified, the
-          field `total_inc_tax` is also required. (Float, Float-As-String, Integer)
-        example: '225.0000'
-        type: string
-      total_inc_tax:
-        description: 'Override value for the total, including tax. If specified, the
-          field `total_ex_tax` is also required. (Float, Float-As-String, Integer) '
-        example: '225.0000'
-        type: string
       items_total:
         description: The total number of items in the order.
         example: 1
@@ -1830,11 +1836,6 @@ definitions:
         description: Whether this is an order for digital products.
         example: false
         type: boolean
-      gift_certificate_amount:
-        description: A read-only value. Do not pass in a POST or PUT. (Float, Float-As-String,
-          Integer)
-        example: '0.0000'
-        type: string
       ip_address:
         description: IP Address of the customer, if known.
         example: 12.345.678.910
@@ -1866,12 +1867,6 @@ definitions:
       is_deleted:
         description: Indicates whether the order was deleted (archived). Set to to
           true, to archive an order.
-        example: false
-        type: boolean
-      is_email_opt_in:
-        description: Indicates whether the shopper has selected an opt-in check box
-          (on the checkout page) to receive emails. A read-only value. Do not pass
-          in a POST or PUT.
         example: false
         type: boolean
       credit_card_type:
@@ -1926,7 +1921,7 @@ definitions:
           products:
             type: array
             items:
-              type: object
+              $ref: "#/definitions/OrderProduct"
   OrderShipmentRequest:
     type: object
     title: Order Shipment Post/Put Request
